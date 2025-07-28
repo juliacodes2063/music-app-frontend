@@ -10,14 +10,16 @@ This is the frontend part of a music management app where users can browse, edit
 - Responsive UI
 - State management with Redux Toolkit
 - Server communication using **RTK Query**
+- Intelligent column-based search (with debounce)
+- Track file upload and deletion
+- Track metadata editing
 
 ## 🛠 Tech Stack
 
 - React
 - Redux Toolkit + RTK Query
-- SCSS Modules
 - Vite
-- Framer Motion (optional)
+- Framer Motion 
 - Tailwind
 - Tanstack/react-table
 
