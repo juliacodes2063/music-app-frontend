@@ -1,1 +1,1 @@
-export const BASE_URL = "http://localhost:8000/api"
+export const BASE_URL = "https://music-app-backend-kxad.onrender.com/api"
