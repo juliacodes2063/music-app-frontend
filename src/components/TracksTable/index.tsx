@@ -5,6 +5,7 @@ import { Loader } from '../common/Loader/Loader';
 import { useTracksTableColumns } from './hooks/useTracksTableColumns';
 import { Track, TrackListResponse } from '../../types/track';
 import { SortingState } from '@tanstack/react-table';
+import { BASE_URL } from '../../api/url';
 
 interface TracksTableProps {
   onUploadClick: (track: Track) => void;
@@ -92,7 +93,7 @@ const TracksTable: React.FC<TracksTableProps> = ({
       {playingTrackId && (
         <audio
           ref={audioRef}
-          src={`http://localhost:8000/api/files/${playingTrack?.audioFile}`}
+          src={`${BASE_URL}/files/${encodeURIComponent(playingTrack?.audioFile ?? '')}`}
           autoPlay
           onTimeUpdate={() => {
             const audio = audioRef.current;
