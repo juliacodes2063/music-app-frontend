@@ -55,6 +55,7 @@ TracksTable, TrackFileUploader, etc. — domain-specific components
 /src/types — TypeScript interfaces and enums
 
 /src/utils — Utility functions
+```
 
 [🔗 Backend (See the backend repo)](https://github.com/juliacodes2063/music-app-backend)
 
