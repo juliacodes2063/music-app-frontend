@@ -9,6 +9,7 @@ import TrackMetaChange from "../components/TrackMetaChange";
 import { GetTracksParams, useLazyGetTracksQuery } from "../store/services/musicApi";
 import { SortingState } from "@tanstack/react-table";
 import AnimatedSearchBar from "../components/AnimatedSearchBar";
+import ResponsiveGate from "../components/ResponsiveGate";
 
 type ModalContentType = 'addTrack' | 'editTrack' | 'uploadTrackFile' | 'deleteTrackFile' | null;
 
@@ -77,69 +78,61 @@ export function TracksPage() {
     };
 
     return (
-        <>
-            <div className="flex items-center justify-between mb-4">
-                <h1 data-testid="tracks-header" className="text-2xl font-bold">Track List</h1>
-                    <AnimatedSearchBar  
-                        onSearch={setSearch}
-                    />
-                </div>
-            <div className="relative">
-                <ClearButton
-                    onClick={openAddTrack}
-                    data-testid="create-track-button"
-                    className="button z-[20] absolute text-[6px] top-[20px] right-1 -translate-y-1/2 "
-                >
-                    + Add music
-                </ClearButton>
+    <ResponsiveGate minWidth={1024} message="This page requires a larger screen (≥ 1024px). Please use a tablet or desktop.">
+      <>
+        <div className="flex items-center justify-between mb-4">
+          <h1 data-testid="tracks-header" className="text-2xl font-bold">Track List</h1>
+          <AnimatedSearchBar onSearch={setSearch} />
+        </div>
 
-                <TracksTable
-                    onUploadClick={openUploadFile}
-                    onDeletingClick={openDeletingFile}
-                    onEditClick={openEditTrack}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    filters={filters}
-                    setFilters={setFilters}
-                    sorting={sorting}
-                    setSorting={setSorting}
-                    lazyData={lazyData}
-                    isLoadingLazy={isLoadingLazy}
-                />
+        <div className="relative">
+          <ClearButton
+            onClick={openAddTrack}
+            data-testid="create-track-button"
+            className="button z-[20] absolute text-[6px] top-[20px] right-1 -translate-y-1/2 "
+          >
+            + Add music
+          </ClearButton>
 
-                <Modal
-                    open={modalContent !== null}
-                    onOpenChange={(open) => !open && setModalContent(null)}
-                    title={getModalTitle(modalContent)}
-                >
-                    {(modalContent === 'addTrack' || modalContent === 'editTrack') && (
-                        <TrackMetaChange
-                            trackModel={trackModel}
-                            setTrackModel={setTrackModel}
-                            setModalContent={setModalContent}
-                            selectedTrack={selectedTrack}
-                            setSelectedTrack={setSelectedTrack}
-                        />
-                    )}
+          <TracksTable
+            onUploadClick={openUploadFile}
+            onDeletingClick={openDeletingFile}
+            onEditClick={openEditTrack}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            filters={filters}
+            setFilters={setFilters}
+            sorting={sorting}
+            setSorting={setSorting}
+            lazyData={lazyData}
+            isLoadingLazy={isLoadingLazy}
+          />
 
-                    {modalContent === 'uploadTrackFile' && selectedTrack && (
-                        <TrackFileUploader
-                            track={selectedTrack}
-                            setModalContent={setModalContent}
-                            setSelectedTrack={setSelectedTrack}
-                        />
-                    )}
+          <Modal
+            open={modalContent !== null}
+            onOpenChange={(open) => !open && setModalContent(null)}
+            title={getModalTitle(modalContent)}
+          >
+            {(modalContent === 'addTrack' || modalContent === 'editTrack') && (
+              <TrackMetaChange
+                trackModel={trackModel}
+                setTrackModel={setTrackModel}
+                setModalContent={setModalContent}
+                selectedTrack={selectedTrack}
+                setSelectedTrack={setSelectedTrack}
+              />
+            )}
 
-                    {modalContent === 'deleteTrackFile' && selectedTrack && (
-                        <TrackFileDeleting
-                            track={selectedTrack}
-                            setModalContent={setModalContent}
-                            setSelectedTrack={setSelectedTrack}
-                        />
-                    )}
+            {modalContent === 'uploadTrackFile' && selectedTrack && (
+              <TrackFileUploader track={selectedTrack} setModalContent={setModalContent} setSelectedTrack={setSelectedTrack} />
+            )}
 
-                </Modal>
-            </div>
-        </>
-    );
+            {modalContent === 'deleteTrackFile' && selectedTrack && (
+              <TrackFileDeleting track={selectedTrack} setModalContent={setModalContent} setSelectedTrack={setSelectedTrack} />
+            )}
+          </Modal>
+        </div>
+      </>
+    </ResponsiveGate>
+  );
 }

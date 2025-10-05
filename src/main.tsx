@@ -4,15 +4,19 @@ import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { store } from './store/store.ts'
 import { Provider } from 'react-redux'
+import { ScreenSizeProvider } from './contexts/ScreenSizeContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
-        <Provider store={store}>
-            
-            <App />
-            
-        </Provider>
+        <ScreenSizeProvider>
 
+            <Provider store={store}>
+                
+                <App />
+                
+            </Provider>
+        </ScreenSizeProvider>
+       
     </BrowserRouter>
 
 )
