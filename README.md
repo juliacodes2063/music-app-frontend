@@ -62,5 +62,7 @@ See the backend repo: https://github.com/juliacodes2063/music-app-backend
 
 🖼 Demo
 
+[music-app-frontend-gilt.vercel.app](https://music-app-frontend-gilt.vercel.app/tracks)
+
 
 
