@@ -56,13 +56,11 @@ TracksTable, TrackFileUploader, etc. — domain-specific components
 
 /src/utils — Utility functions
 
-🔗 Backend
+[🔗 Backend (See the backend repo)](https://github.com/juliacodes2063/music-app-backend)
 
-See the backend repo: https://github.com/juliacodes2063/music-app-backend
 
-🖼 Demo
+[🔗 Demo](https://music-app-frontend-gilt.vercel.app/tracks)
 
-[music-app-frontend-gilt.vercel.app](https://music-app-frontend-gilt.vercel.app/tracks)
 
 
 
